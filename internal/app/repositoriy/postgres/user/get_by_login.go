@@ -1,8 +1,8 @@
-package user_repository_postgres
+package userrepositorypostgres
 
 import (
 	"context"
-	
+
 	model "gophermarket/internal/app/repositoriy/model/user"
 )
 

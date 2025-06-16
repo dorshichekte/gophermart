@@ -1,4 +1,4 @@
-package base_handler
+package basehandler
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ func (h *BaseHandler) handleJSONDecodeError(err error) error {
 
 	switch {
 	case errors.As(err, &syntaxError) || errors.Is(err, io.ErrUnexpectedEOF):
-		return customerror.NewWithData(errRequestBodyContainsBadlyFormedJson, syntaxError.Offset)
+		return customerror.NewWithData(errRequestBodyContainsBadlyFormedJSON, syntaxError.Offset)
 
 	case errors.As(err, &unmarshalTypeError):
 		return customerror.NewWithData(errRequestBodyContainsInvalidValueField, unmarshalTypeError.Field, unmarshalTypeError.Offset)

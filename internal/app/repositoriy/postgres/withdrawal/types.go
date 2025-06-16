@@ -1,4 +1,4 @@
-package withdrawal_repository_postgres
+package withdrawalrepositorypostgres
 
 import "database/sql"
 

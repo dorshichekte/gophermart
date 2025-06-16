@@ -1,4 +1,4 @@
-package http_adapter
+package httpadapter
 
 import (
 	"gophermarket/internal/app/adapter/primary/http-adapter/router"
@@ -6,10 +6,10 @@ import (
 )
 
 type Config struct {
-	Server http_server.Config
+	Server httpserver.Config
 	Router router.Config
 }
 
-type HttpAdapter struct {
-	server *http_server.Server
+type HTTPAdapter struct {
+	server *httpserver.Server
 }

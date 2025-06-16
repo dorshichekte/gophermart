@@ -1,4 +1,4 @@
-package repository_postgres
+package repositorypostgres
 
 import (
 	"database/sql"
@@ -10,6 +10,6 @@ import (
 
 type Postgres struct {
 	l      *zap.Logger
-	config env_config.Config
+	config envconfig.Config
 	DB     *sql.DB
 }

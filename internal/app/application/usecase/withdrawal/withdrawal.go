@@ -1,4 +1,4 @@
-package withdrawal_usecase
+package withdrawalusecase
 
 import (
 	"go.uber.org/zap"

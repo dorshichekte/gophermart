@@ -1,4 +1,4 @@
-package http_adapter
+package httpadapter
 
 import (
 	"context"
@@ -14,12 +14,12 @@ import (
 	"gophermarket/internal/libs/validator"
 )
 
-func New(logger *zap.Logger, auth auth.Auth, config Config, uc *usecase.UseCases, validator *validator.Validator) *HttpAdapter {
+func New(logger *zap.Logger, auth auth.Auth, config Config, uc *usecase.UseCases, validator *validator.Validator) *HTTPAdapter {
 	rtr := newRouter(logger, auth, config, uc, validator)
 
-	s := http_server.New(logger, config.Server, rtr)
+	s := httpserver.New(logger, config.Server, rtr)
 
-	return &HttpAdapter{
+	return &HTTPAdapter{
 		server: s,
 	}
 }
@@ -34,6 +34,6 @@ func newRouter(logger *zap.Logger, auth auth.Auth, config Config, uc *usecase.Us
 	return r.Router()
 }
 
-func (a HttpAdapter) Start(ctx context.Context) error {
+func (a HTTPAdapter) Start(ctx context.Context) error {
 	return a.server.Start(ctx)
 }

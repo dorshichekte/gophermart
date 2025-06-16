@@ -1,4 +1,4 @@
-package repository_postgres
+package repositorypostgres
 
 import (
 	"database/sql"
@@ -16,7 +16,7 @@ import (
 	"gophermarket/internal/app/config/env"
 )
 
-func New(l *zap.Logger, cfg env_config.Config) *sql.DB {
+func New(l *zap.Logger, cfg envconfig.Config) *sql.DB {
 	db, err := sql.Open("pgx", cfg.DatabaseDSN)
 	if err != nil {
 		l.Fatal(err.Error())
@@ -32,7 +32,7 @@ func New(l *zap.Logger, cfg env_config.Config) *sql.DB {
 	return db
 }
 
-func applyMigrations(cfg env_config.Config) error {
+func applyMigrations(cfg envconfig.Config) error {
 	wd, err := os.Getwd()
 	if err != nil {
 		return customerror.NewWithData(constants.ErrPathUnknownFolderPath, err)

@@ -1,4 +1,4 @@
-package balance_usecase
+package balanceusecase
 
 import (
 	"context"

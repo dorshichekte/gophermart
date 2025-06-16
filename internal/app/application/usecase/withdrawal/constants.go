@@ -1,4 +1,4 @@
-package withdrawal_usecase
+package withdrawalusecase
 
 const (
 	errInsufficientBalance = "Insufficient funds on balance"

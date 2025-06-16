@@ -1,4 +1,4 @@
-package order_repository_postgres
+package orderrepositorypostgres
 
 import (
 	"database/sql"

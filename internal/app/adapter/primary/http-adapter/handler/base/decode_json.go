@@ -1,4 +1,4 @@
-package base_handler
+package basehandler
 
 import (
 	"encoding/json"

@@ -1,19 +1,16 @@
 package config
 
 import (
-	http_adapter "gophermarket/internal/app/adapter/primary/http-adapter"
 	"gophermarket/internal/app/config/env"
+
+	http_adapter "gophermarket/internal/app/adapter/primary/http-adapter"
 )
 
-//	type Databases struct {
-//		Postgres repository.Postgres
-//	}
 type Adapters struct {
-	HttpAdapter http_adapter.Config
-	//Databases   Databases
+	HTTPAdapter http_adapter.Config
 }
 
 type Config struct {
-	Env      env_config.Config
+	Env      envconfig.Config
 	Adapters Adapters
 }

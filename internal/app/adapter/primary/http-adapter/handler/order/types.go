@@ -1,4 +1,4 @@
-package order_handler
+package orderhandler
 
 import (
 	"go.uber.org/zap"

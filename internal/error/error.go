@@ -7,7 +7,7 @@ func New(text string) error {
 }
 
 func (e *CustomError) Error() string {
-	return fmt.Sprintf("%s", e.Text)
+	return string(e.Text)
 }
 
 func NewWithData(text TextError, data ...interface{}) error {

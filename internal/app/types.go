@@ -5,5 +5,5 @@ import (
 )
 
 type App struct {
-	HttpAdapter *http_adapter.HttpAdapter
+	HTTPAdapter *httpadapter.HTTPAdapter
 }

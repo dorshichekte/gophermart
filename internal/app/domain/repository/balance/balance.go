@@ -1,4 +1,4 @@
-package balance_repository
+package balancerepository
 
 import (
 	"context"

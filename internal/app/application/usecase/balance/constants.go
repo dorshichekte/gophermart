@@ -1,1 +1,1 @@
-package balance_usecase
+package balanceusecase

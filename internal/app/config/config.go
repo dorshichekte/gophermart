@@ -9,13 +9,13 @@ import (
 )
 
 func New() (Config, error) {
-	envCfg, err := env_config.New()
+	envCfg, err := envconfig.New()
 	if err != nil {
 		return Config{}, err
 	}
 
 	adapterCfg := Adapters{
-		HttpAdapter: http_adapter.Config{
+		HTTPAdapter: http_adapter.Config{
 			Router: router.Config{
 				Shutdown: constants.DefaultTimeRequest,
 				Timeout:  constants.DefaultTimeRequest,

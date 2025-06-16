@@ -1,4 +1,4 @@
-package repository_postgres
+package repositorypostgres
 
 import (
 	customerror "gophermarket/internal/error"

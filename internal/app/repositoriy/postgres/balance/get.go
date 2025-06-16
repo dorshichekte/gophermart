@@ -1,4 +1,4 @@
-package balance_repository_postgres
+package balancerepositorypostgres
 
 import (
 	"context"

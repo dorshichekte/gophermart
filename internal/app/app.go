@@ -32,9 +32,9 @@ func New(l *zap.Logger, cfg config.Config) App {
 
 	useCases := usecase.New(l, h, a, repos)
 
-	httpAdapter := http_adapter.New(l, a, cfg.Adapters.HttpAdapter, useCases, validator)
+	httpAdapter := httpadapter.New(l, a, cfg.Adapters.HTTPAdapter, useCases, validator)
 
 	return App{
-		HttpAdapter: httpAdapter,
+		HTTPAdapter: httpAdapter,
 	}
 }

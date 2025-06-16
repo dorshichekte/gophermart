@@ -28,7 +28,7 @@ func main() {
 
 	a := app.New(l, cfg)
 	gr := graceful.New(
-		graceful.NewProcess(a.HttpAdapter),
+		graceful.NewProcess(a.HTTPAdapter),
 	)
 
 	ctx, cancel := context.WithCancel(context.Background())

@@ -1,4 +1,4 @@
-package user_usecase
+package userusecase
 
 const (
 	loginAlreadyTaken = "Login is already taken"

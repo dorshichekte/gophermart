@@ -1,4 +1,4 @@
-package order_usecase
+package orderusecase
 
 import (
 	"go.uber.org/zap"
