@@ -10,7 +10,7 @@ func (o *orderPostgresRepository) GetAll(ctx context.Context, userID int) ([]mod
 	query := `SELECT *
 			  FROM orders
 			  WHERE user_id = $1
-			  ORDER BY created_at DESC
+			  ORDER BY upload_at DESC
 	`
 	rows, err := o.db.QueryContext(ctx, query, userID)
 	if err != nil {
@@ -23,7 +23,7 @@ func (o *orderPostgresRepository) GetAll(ctx context.Context, userID int) ([]mod
 	var orders []model.Order
 	for rows.Next() {
 		var o model.Order
-		if err = rows.Scan(&o.Number, &o.Status, &o.Accrual, &o.UploadedAt); err != nil {
+		if err = rows.Scan(&o.ID, &o.Number, &o.Status, &o.UserID, &o.Accrual, &o.Active, &o.UploadedAt, &o.ModifiedAt); err != nil {
 			return nil, err
 		}
 		orders = append(orders, o)
