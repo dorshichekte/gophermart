@@ -30,7 +30,7 @@ func (r *userPostgresRepository) Register(ctx context.Context, user entity.User)
 	}
 
 	userBalanceQuery := `
-		INSERT INTO user_balances (user_id)
+		INSERT INTO user_balance (user_id)
 		VALUES ($1);
 	`
 	_, insertErr := trs.ExecContext(ctx, userBalanceQuery, dbUser.ID)
