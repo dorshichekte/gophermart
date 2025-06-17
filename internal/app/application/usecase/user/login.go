@@ -10,7 +10,7 @@ import (
 func (uCase *UserUseCase) Login(ctx context.Context, login, password string) (int, error) {
 	user, err := uCase.userRepository.GetByLogin(ctx, login)
 	if err != nil {
-		if errors.As(err, &pgx.ErrNoRows) {
+		if errors.Is(err, pgx.ErrNoRows) {
 			return 0, ErrUserNotFound
 		}
 		return 0, err

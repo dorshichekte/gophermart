@@ -20,7 +20,7 @@ func (wh *Handler) Make(res http.ResponseWriter, req *http.Request) {
 
 	userID, ok := req.Context().Value(middleware.UserIDKey).(int)
 	if !ok {
-		util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: constants.ErrFailedGettingUserID})
+		util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: string(constants.ErrFailedGettingUserID)})
 		return
 	}
 
