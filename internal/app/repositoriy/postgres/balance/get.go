@@ -10,7 +10,7 @@ func (b *balancePostgresRepository) Get(ctx context.Context, userID int) (model.
 	var balance model.Balance
 
 	query := `
-		SELECT * FROM balance
+		SELECT * FROM user_balance
 		WHERE user_id = $1;
 	`
 	err := b.db.QueryRowContext(ctx, query, userID).Scan(&balance.ID, &balance.UserID, &balance.Current, &balance.Withdrawn, &balance.CreatedAt)
