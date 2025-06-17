@@ -7,7 +7,7 @@ import (
 
 	"gophermarket/internal/app/adapter/primary/http-adapter/dto/user"
 	user_usecase "gophermarket/internal/app/application/usecase/user"
-	constants2 "gophermarket/internal/constants"
+	"gophermarket/internal/constants"
 	"gophermarket/internal/libs/auth"
 	v "gophermarket/internal/libs/validator"
 	util "gophermarket/internal/util/error_response"
@@ -15,7 +15,7 @@ import (
 
 func (uh *Handler) Register(auth auth.Auth) func(res http.ResponseWriter, req *http.Request) {
 	return func(res http.ResponseWriter, req *http.Request) {
-		ctx, cancel := context.WithTimeout(context.Background(), constants2.DefaultTimeRequest)
+		ctx, cancel := context.WithTimeout(context.Background(), constants.DefaultTimeRequest)
 		defer cancel()
 		defer func() {
 			_ = req.Body.Close()
@@ -63,7 +63,7 @@ func (uh *Handler) Register(auth auth.Auth) func(res http.ResponseWriter, req *h
 		}
 
 		http.SetCookie(res, &http.Cookie{
-			Name:  constants2.AuthCookieName,
+			Name:  constants.AuthCookieName,
 			Value: authData.AccessToken,
 			Path:  "/",
 		})

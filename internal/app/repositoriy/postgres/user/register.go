@@ -2,7 +2,6 @@ package userrepositorypostgres
 
 import (
 	"context"
-
 	entity "gophermarket/internal/app/domain/entity/user"
 	model "gophermarket/internal/app/repositoriy/model/user"
 )
@@ -33,7 +32,7 @@ func (r *userPostgresRepository) Register(ctx context.Context, user entity.User)
 		INSERT INTO user_balance (user_id)
 		VALUES ($1);
 	`
-	_, insertErr := trs.ExecContext(ctx, userBalanceQuery, dbUser.ID)
+	_, insertErr := trs.ExecContext(ctx, userBalanceQuery, id)
 	if insertErr != nil {
 		return 0, insertErr
 	}
