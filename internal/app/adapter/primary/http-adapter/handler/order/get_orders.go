@@ -27,6 +27,13 @@ func (oh *Handler) GetOrders(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	isOrdersEmpty := len(orders) == 0
+	if isOrdersEmpty {
+		res.Header().Set("Content-Type", "application/json")
+		res.WriteHeader(http.StatusNoContent)
+		return
+	}
+
 	ordersResponse := make([]dto.OrderResponseDTO, 0, len(orders))
 	for _, order := range orders {
 		orderResponse := dto.NewOrderResponse(order.Number, order.Status, order.Accrual, order.UploadedAt)
