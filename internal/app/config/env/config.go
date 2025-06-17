@@ -28,9 +28,6 @@ func (c *Config) valid() error {
 	if c.ServerAddress == "" {
 		missingVariables = append(missingVariables, "RUN_ADDRESS")
 	}
-	//if c.AccrualAddress == "" {
-	//	missingVariables = append(missingVariables, "ACCRUAL_SYSTEM_ADDRESS")
-	//}
 	if c.AccessSecretKey == "" {
 		missingVariables = append(missingVariables, "ACCESS_SECRET_KEY")
 	}
@@ -60,13 +57,15 @@ func (c *Config) initFlags() {
 }
 
 func (c *Config) initDefaultValues() {
-	c.AccessSecretKey = defaultAccessTokenSecret
+	c.AccessSecretKey = defaultAccessSecret
 }
 
 func (c *Config) init() (err error) {
 	c.initEnv()
 	c.initFlags()
+	c.initDefaultValues()
 
 	err = c.valid()
+
 	return err
 }
