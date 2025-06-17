@@ -22,10 +22,14 @@ func (w *withdrawalPostgresRepository) Get(ctx context.Context, userID int) ([]m
 	var withdrawals []model.Withdrawal
 	for rows.Next() {
 		var wd model.Withdrawal
-		if rowErr := rows.Scan(&wd.ID, &wd.OrderNumber, wd.UserID, &wd.Amount, &wd.CreatedAt); rowErr != nil {
+		if rowErr := rows.Scan(&wd.ID, &wd.OrderNumber, &wd.UserID, &wd.Amount, &wd.CreatedAt); rowErr != nil {
 			return nil, rowErr
 		}
 		withdrawals = append(withdrawals, wd)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return withdrawals, nil
