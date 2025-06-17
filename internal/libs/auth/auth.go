@@ -31,7 +31,7 @@ func (auth *auth) ParseAccessToken(accessToken string) (*UserData, error) {
 		return []byte(auth.accessSecret), nil
 	}
 
-	claims := &claims{}
+	claims := &Claims{}
 	_, err := jwt.ParseWithClaims(accessToken, claims, parseAccessTokenFunc)
 	if err != nil {
 		return nil, err
@@ -42,5 +42,5 @@ func (auth *auth) ParseAccessToken(accessToken string) (*UserData, error) {
 		return nil, isValidErr
 	}
 
-	return &claims.userData, nil
+	return &claims.UserData, nil
 }

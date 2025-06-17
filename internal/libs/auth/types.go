@@ -8,9 +8,9 @@ type UserData struct {
 	ID int
 }
 
-type claims struct {
+type Claims struct {
 	jwt.RegisteredClaims
-	userData UserData
+	UserData UserData
 }
 
 type TokenPair struct {

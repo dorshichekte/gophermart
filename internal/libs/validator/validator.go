@@ -22,7 +22,6 @@ func (v *Validator) ValidateStruct(s any) error {
 func (v *Validator) ParseValidationErrors(err error) ([]ValidationError, error) {
 	var listErrors []ValidationError
 
-	fmt.Print(err)
 	var errs validator.ValidationErrors
 	if errors.As(err, &errs) {
 		for _, e := range errs {
