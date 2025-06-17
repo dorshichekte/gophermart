@@ -18,4 +18,4 @@ type gzipWriter struct {
 	http.ResponseWriter
 }
 
-type contextKey string
+type ContextKey string

@@ -2,7 +2,7 @@ package middleware
 
 import "net/http"
 
-func UserIDKey() contextKey {
+func UserIDKey() ContextKey {
 	return userIDKey
 }
 

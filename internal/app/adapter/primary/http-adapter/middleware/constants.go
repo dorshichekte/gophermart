@@ -1,5 +1,5 @@
 package middleware
 
 const (
-	userIDKey = contextKey("userID")
+	userIDKey = ContextKey("userID")
 )
