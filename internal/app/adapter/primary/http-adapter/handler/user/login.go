@@ -24,6 +24,7 @@ func (uh *Handler) Login(auth auth.Auth) func(res http.ResponseWriter, req *http
 		var loginRequestDto dto.LoginRequest
 		decodeErr := uh.DecodeJSON(req, &loginRequestDto)
 		if decodeErr != nil {
+			uh.Logger.Error(decodeErr.Error())
 			util.WriteErrorResponse(res, http.StatusBadRequest, util.WrapperError[string]{CustomError: decodeErr.Error()})
 			return
 		}
@@ -32,10 +33,12 @@ func (uh *Handler) Login(auth auth.Auth) func(res http.ResponseWriter, req *http
 		if validateErr != nil {
 			validationErrors, parseError := uh.validator.ParseValidationErrors(validateErr)
 			if parseError != nil {
+				uh.Logger.Error(parseError.Error())
 				util.WriteErrorResponse(res, http.StatusBadRequest, util.WrapperError[string]{CustomError: validateErr.Error()})
 				return
 			}
 
+			uh.Logger.Error(validateErr.Error())
 			util.WriteErrorResponse(res, http.StatusBadRequest, util.WrapperError[[]v.ValidationError]{CustomError: validationErrors})
 			return
 		}
@@ -43,16 +46,19 @@ func (uh *Handler) Login(auth auth.Auth) func(res http.ResponseWriter, req *http
 		userID, loginErr := uh.Service.User.Login(ctx, loginRequestDto.Login, loginRequestDto.Password)
 		if loginErr != nil {
 			if errors.Is(loginErr, user_usecase.ErrUserNotFound) {
+				uh.Logger.Error(loginErr.Error())
 				util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: loginErr.Error()})
 				return
 			}
 
+			uh.Logger.Error(loginErr.Error())
 			util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: loginErr.Error()})
 			return
 		}
 
 		authData, setAuthErr := auth.Generate(userID)
 		if setAuthErr != nil {
+			uh.Logger.Error(setAuthErr.Error())
 			util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: setAuthErr.Error()})
 			return
 		}
