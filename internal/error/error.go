@@ -10,7 +10,7 @@ func (e *CustomError) Error() string {
 	return string(e.Text)
 }
 
-func NewWithData(text TextError, data ...interface{}) error {
+func NewWithData(text TextError, data ...any) error {
 	return &CustomErrorWithData{Text: text, Data: data}
 }
 

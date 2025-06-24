@@ -8,5 +8,5 @@ type CustomError struct {
 
 type CustomErrorWithData struct {
 	Text TextError
-	Data interface{}
+	Data any
 }

@@ -23,7 +23,7 @@ func (auth *auth) Generate(userID int) (*TokenPair, error) {
 }
 
 func (auth *auth) ParseAccessToken(accessToken string) (*UserData, error) {
-	parseAccessTokenFunc := func(token *jwt.Token) (interface{}, error) {
+	parseAccessTokenFunc := func(token *jwt.Token) (any, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errUnexpectedSigningMethod
 		}

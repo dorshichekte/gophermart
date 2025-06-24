@@ -8,7 +8,7 @@ import (
 	customerror "gophermarket/internal/error"
 )
 
-func (h *BaseHandler) DecodeJSON(req *http.Request, data interface{}) error {
+func (h *BaseHandler) DecodeJSON(req *http.Request, data any) error {
 	ct := req.Header.Get("Content-Type")
 	if ct != "" {
 		mediaType := strings.ToLower(strings.TrimSpace(strings.Split(ct, ";")[0]))
