@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	accrual_usecase "gophermarket/internal/app/application/usecase/accrual"
 	balance_usecase "gophermarket/internal/app/application/usecase/balance"
 	order_usecase "gophermarket/internal/app/application/usecase/order"
 	user_usecase "gophermarket/internal/app/application/usecase/user"
@@ -23,4 +24,5 @@ type UseCases struct {
 	Balance    *balance_usecase.BalanceUseCase
 	Order      *order_usecase.OrderUseCase
 	Withdrawal *withdrawal_usecase.WithdrawalUseCase
+	Accrual    *accrual_usecase.AccrualUseCase
 }

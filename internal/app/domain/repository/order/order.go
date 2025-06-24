@@ -11,4 +11,6 @@ type OrderRepository interface {
 	GetAll(ctx context.Context, userID int) ([]model.Order, error)
 	GetByNumber(ctx context.Context, orderNumber string) (model.Order, error)
 	Upload(ctx context.Context, order entity.Order) error
+	GetNew(ctx context.Context) ([]model.Order, error)
+	MakeAccrualToBalance(ctx context.Context, order model.Order) error
 }

@@ -3,6 +3,7 @@ package usecase
 import (
 	"go.uber.org/zap"
 
+	accrual_usecase "gophermarket/internal/app/application/usecase/accrual"
 	balance_usecase "gophermarket/internal/app/application/usecase/balance"
 	order_usecase "gophermarket/internal/app/application/usecase/order"
 	user_usecase "gophermarket/internal/app/application/usecase/user"
@@ -17,5 +18,6 @@ func New(logger *zap.Logger, hasher hasher.Hasher, auth auth.Auth, repos Reposit
 		Balance:    balance_usecase.New(logger, repos.Balance),
 		Order:      order_usecase.New(logger, repos.Order),
 		Withdrawal: withdrawal_usecase.New(logger, repos.Withdrawal, repos.Balance),
+		Accrual:    accrual_usecase.New(logger),
 	}
 }

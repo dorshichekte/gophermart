@@ -6,8 +6,8 @@ import (
 	entity "gophermarket/internal/app/domain/entity/order"
 )
 
-func (o *OrderUseCase) GetAll(ctx context.Context, userID int) ([]entity.OrderResponse, error) {
-	tmpOrders, err := o.orderRepository.GetAll(ctx, userID)
+func (oc *OrderUseCase) GetAll(ctx context.Context, userID int) ([]entity.OrderResponse, error) {
+	tmpOrders, err := oc.orderRepository.GetAll(ctx, userID)
 	if err != nil {
 		return nil, err
 	}
