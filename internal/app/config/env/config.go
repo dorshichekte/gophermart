@@ -2,11 +2,11 @@ package envconfig
 
 import (
 	"flag"
-	"fmt"
-	customerror "gophermarket/internal/error"
 	"os"
 
 	"github.com/joho/godotenv"
+
+	customerror "gophermarket/internal/error"
 )
 
 func New() (Config, error) {
@@ -51,9 +51,9 @@ func (c *Config) initEnv() {
 }
 
 func (c *Config) initFlags() {
-	flag.StringVar(&c.ServerAddress, "a", c.ServerAddress, "Адресс сервера")
+	flag.StringVar(&c.ServerAddress, "a", c.ServerAddress, "Адрес сервера")
 	flag.StringVar(&c.DatabaseDSN, "d", c.DatabaseDSN, "Строка подключения к бд")
-	flag.StringVar(&c.AccrualAddress, "r", c.AccrualAddress, "Адресс запуска Accrual system")
+	flag.StringVar(&c.AccrualAddress, "r", c.AccrualAddress, "Адрес запуска Accrual system")
 	flag.Parse()
 }
 
@@ -67,6 +67,6 @@ func (c *Config) init() (err error) {
 	c.initDefaultValues()
 
 	err = c.valid()
-	fmt.Println(c)
+
 	return err
 }

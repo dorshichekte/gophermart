@@ -25,7 +25,7 @@ func (o *orderPostgresRepository) MakeAccrualToBalance(ctx context.Context, orde
 	}
 
 	queryUpdateBalance := `UPDATE user_balance 
- 						   SET curren=user_balance.current+$1
+ 						   SET current=user_balance.current+$1
  						   WHERE user_id=$2`
 	_, err = tx.ExecContext(ctx, queryUpdateBalance, order.Accrual, order.UserID)
 	if err != nil {
