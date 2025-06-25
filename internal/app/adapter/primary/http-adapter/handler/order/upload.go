@@ -3,7 +3,6 @@ package orderhandler
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	"strings"
