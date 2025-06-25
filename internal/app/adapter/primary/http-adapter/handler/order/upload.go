@@ -3,6 +3,7 @@ package orderhandler
 import (
 	"context"
 	"errors"
+	orderusecase "gophermarket/internal/app/application/usecase/order"
 	"io"
 	"net/http"
 	"strings"
@@ -40,6 +41,16 @@ func (oh *Handler) UploadOrder(res http.ResponseWriter, req *http.Request) {
 		if errors.Is(uploadErr, customerror.New(string(constants.ErrInvalidOrderNumber))) {
 			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: uploadErr.Error()})
 			return
+		}
+
+		if errors.Is(uploadErr, orderusecase.ErrOrderExists) {
+			res.Header().Set("Content-Type", "application/json")
+			res.WriteHeader(http.StatusOK)
+			return
+		}
+
+		if errors.Is(uploadErr, orderusecase.ErrOrderExistsByAnotherUser) {
+			util.WriteErrorResponse(res, http.StatusConflict, util.WrapperError[string]{CustomError: uploadErr.Error()})
 		}
 
 		util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: uploadErr.Error()})
