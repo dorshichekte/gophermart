@@ -50,6 +50,7 @@ func (oh *Handler) UploadOrder(res http.ResponseWriter, req *http.Request) {
 
 		if errors.Is(uploadErr, orderusecase.ErrOrderExistsByAnotherUser) {
 			util.WriteErrorResponse(res, http.StatusConflict, util.WrapperError[string]{CustomError: uploadErr.Error()})
+			return
 		}
 
 		util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: uploadErr.Error()})
