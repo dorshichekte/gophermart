@@ -2,6 +2,7 @@ package envconfig
 
 import (
 	"flag"
+	"fmt"
 	customerror "gophermarket/internal/error"
 	"os"
 
@@ -66,6 +67,6 @@ func (c *Config) init() (err error) {
 	c.initDefaultValues()
 
 	err = c.valid()
-
+	fmt.Println(c)
 	return err
 }
