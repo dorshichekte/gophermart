@@ -3,9 +3,9 @@ package withdrawalusecase
 import (
 	"context"
 	"gophermarket/internal/constants"
-	util "gophermarket/internal/util/order"
 
 	customerror "gophermarket/internal/error"
+	util "gophermarket/internal/util/order"
 )
 
 func (wCase *WithdrawalUseCase) Make(ctx context.Context, orderNumber string, userID int, sum float64) error {
