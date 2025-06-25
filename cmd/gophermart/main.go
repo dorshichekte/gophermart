@@ -26,13 +26,13 @@ func main() {
 		return
 	}
 
-	a := app.New(l, cfg)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	a := app.New(ctx, l, cfg)
 	gr := graceful.New(
 		graceful.NewProcess(a.HTTPAdapter),
 	)
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	err = gr.Start(ctx)
 	if err != nil {

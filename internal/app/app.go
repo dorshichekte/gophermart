@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"gophermarket/internal/libs/worker"
 
 	"go.uber.org/zap"
 
@@ -16,16 +17,12 @@ import (
 	"gophermarket/internal/libs/auth"
 	"gophermarket/internal/libs/hasher"
 	v "gophermarket/internal/libs/validator"
-	"gophermarket/internal/libs/worker"
 )
 
-func New(l *zap.Logger, cfg config.Config) App {
+func New(ctx context.Context, l *zap.Logger, cfg config.Config) App {
 	validator := v.New()
 	h := hasher.New()
 	a := auth.New(cfg.Env.AccessSecretKey)
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	pgDB := postgres_repository.New(l, cfg.Env)
 
@@ -36,7 +33,7 @@ func New(l *zap.Logger, cfg config.Config) App {
 		Withdrawal: withdrawal_repository_postgres.New(pgDB),
 	}
 
-	useCases := usecase.New(l, h, a, repos)
+	useCases := usecase.New(l, cfg.Env, h, a, repos)
 
 	httpAdapter := httpadapter.New(l, a, cfg.Adapters.HTTPAdapter, useCases, validator)
 

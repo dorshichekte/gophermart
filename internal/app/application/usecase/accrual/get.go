@@ -15,7 +15,7 @@ import (
 
 func (ac *AccrualUseCase) Get(orderNumber string) (*entity.Accrual, error) {
 	var accrual entity.Accrual
-	url := fmt.Sprintln(ac.config.AccrualAddress, "/api/orders/", orderNumber)
+	url := fmt.Sprintf("%s%s%s", ac.config.AccrualAddress, "/api/orders/", orderNumber)
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, customerror.NewWithData(requestFailed, err)
