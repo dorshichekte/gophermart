@@ -14,7 +14,7 @@ func (o *orderPostgresRepository) GetByNumber(ctx context.Context, orderNumber s
 	row := o.db.QueryRowContext(ctx, query, orderNumber)
 
 	var order model.Order
-	err := row.Scan(&order.Number, &order.Status, &order.Accrual, &order.UploadedAt)
+	err := row.Scan(&order.ID, &order.Number, &order.Status, &order.UserID, &order.Accrual, &order.Active, &order.UploadAt, &order.ModifiedAt)
 	if err != nil {
 		return order, err
 	}

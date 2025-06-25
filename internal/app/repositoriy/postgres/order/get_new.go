@@ -24,7 +24,7 @@ func (o *orderPostgresRepository) GetNew(ctx context.Context) ([]model.Order, er
 	var orders []model.Order
 	for rows.Next() {
 		var order model.Order
-		if err = rows.Scan(&order.ID, &order.Number, &order.Status, &order.UserID, &order.Accrual, &order.Active, &order.UploadedAt, &order.ModifiedAt); err != nil {
+		if err = rows.Scan(&order.ID, &order.Number, &order.Status, &order.UserID, &order.Accrual, &order.Active, &order.UploadAt, &order.ModifiedAt); err != nil {
 			return nil, err
 		}
 		orders = append(orders, order)

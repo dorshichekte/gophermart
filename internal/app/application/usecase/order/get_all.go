@@ -14,7 +14,7 @@ func (oc *OrderUseCase) GetAll(ctx context.Context, userID int) ([]entity.OrderR
 
 	var results []entity.OrderResponse
 	for _, tmpOrder := range tmpOrders {
-		order := entity.NewOrderResponse(tmpOrder.Number, tmpOrder.Status, tmpOrder.Accrual, tmpOrder.UploadedAt)
+		order := entity.NewOrderResponse(tmpOrder.Number, tmpOrder.Status, tmpOrder.Accrual, tmpOrder.UploadAt)
 		results = append(results, order)
 	}
 

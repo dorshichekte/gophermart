@@ -23,7 +23,7 @@ func (o *orderPostgresRepository) GetAll(ctx context.Context, userID int) ([]mod
 	var orders []model.Order
 	for rows.Next() {
 		var o model.Order
-		if err = rows.Scan(&o.ID, &o.Number, &o.Status, &o.UserID, &o.Accrual, &o.Active, &o.UploadedAt, &o.ModifiedAt); err != nil {
+		if err = rows.Scan(&o.ID, &o.Number, &o.Status, &o.UserID, &o.Accrual, &o.Active, &o.UploadAt, &o.ModifiedAt); err != nil {
 			return nil, err
 		}
 		orders = append(orders, o)
