@@ -3,12 +3,12 @@ package withdrawalhandler
 import (
 	"context"
 	"errors"
-	customerror "gophermarket/internal/error"
 	"net/http"
 
 	dto "gophermarket/internal/app/adapter/primary/http-adapter/dto/withdrawal"
 	"gophermarket/internal/app/adapter/primary/http-adapter/middleware"
 	"gophermarket/internal/constants"
+	customerror "gophermarket/internal/error"
 	v "gophermarket/internal/libs/validator"
 	util "gophermarket/internal/util/error_response"
 )

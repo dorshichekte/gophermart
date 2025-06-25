@@ -38,7 +38,7 @@ func (r *Router) AppendRoutes(config Config, handlers *handler.Handlers, auth au
 			Handler: middleware.Add(middleware.Auth(auth))(http.HandlerFunc(handlers.Balance.GetBalance)),
 		},
 		{
-			Path:    "/api/user/balance/withdrawal",
+			Path:    "/api/user/balance/withdraw",
 			Method:  http.MethodPost,
 			Handler: middleware.Add(middleware.Auth(auth))(http.HandlerFunc(handlers.Withdrawal.Make)),
 		},
