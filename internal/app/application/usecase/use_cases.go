@@ -1,9 +1,10 @@
 package usecase
 
 import (
+	accrual_usecase "gophermarket/internal/app/application/usecase/accrual"
+
 	"go.uber.org/zap"
 
-	accrual_usecase "gophermarket/internal/app/application/usecase/accrual"
 	balance_usecase "gophermarket/internal/app/application/usecase/balance"
 	order_usecase "gophermarket/internal/app/application/usecase/order"
 	user_usecase "gophermarket/internal/app/application/usecase/user"
