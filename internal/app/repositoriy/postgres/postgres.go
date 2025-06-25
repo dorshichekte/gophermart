@@ -2,8 +2,6 @@ package repositorypostgres
 
 import (
 	"database/sql"
-	"gophermarket/internal/constants"
-	customerror "gophermarket/internal/error"
 	"os"
 	"path/filepath"
 
@@ -14,6 +12,8 @@ import (
 	"go.uber.org/zap"
 
 	"gophermarket/internal/app/config/env"
+	"gophermarket/internal/constants"
+	customerror "gophermarket/internal/error"
 )
 
 func New(l *zap.Logger, cfg envconfig.Config) *sql.DB {
@@ -35,7 +35,7 @@ func New(l *zap.Logger, cfg envconfig.Config) *sql.DB {
 func applyMigrations(cfg envconfig.Config) error {
 	wd, err := os.Getwd()
 	if err != nil {
-		return customerror.NewWithData(constants.ErrPathUnknownFolderPath, err)
+		return customerror.NewWithData(constants.PathUnknownFolderPath, err)
 	}
 
 	migrationDirPath := "file://" + filepath.Join(wd, "migrations")

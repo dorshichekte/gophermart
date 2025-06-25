@@ -22,7 +22,7 @@ func (wh *Handler) Make(res http.ResponseWriter, req *http.Request) {
 
 	userID, ok := req.Context().Value(middleware.UserIDKey()).(int)
 	if !ok {
-		util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: string(constants.ErrFailedGettingUserID)})
+		util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: constants.ErrFailedGettingUserID.Error()})
 		return
 	}
 
@@ -47,7 +47,7 @@ func (wh *Handler) Make(res http.ResponseWriter, req *http.Request) {
 
 	makeErr := wh.Service.Withdrawal.Make(ctx, withdrawalDto.Order, userID, withdrawalDto.Sum)
 	if makeErr != nil {
-		if errors.Is(makeErr, customerror.New(string(constants.ErrInvalidOrderNumber))) {
+		if errors.Is(makeErr, customerror.New(constants.ErrInvalidOrderNumber.Error())) {
 			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: makeErr.Error()})
 			return
 		}

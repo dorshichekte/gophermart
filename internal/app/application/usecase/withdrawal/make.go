@@ -11,7 +11,7 @@ import (
 func (wCase *WithdrawalUseCase) Make(ctx context.Context, orderNumber string, userID int, sum float64) error {
 	isValid := util.IsValidOrderNumber(orderNumber)
 	if !isValid {
-		return customerror.New(string(constants.ErrInvalidOrderNumber))
+		return constants.ErrInvalidOrderNumber
 	}
 
 	balance, balanceErr := wCase.balanceRepository.Get(ctx, userID)
@@ -20,7 +20,7 @@ func (wCase *WithdrawalUseCase) Make(ctx context.Context, orderNumber string, us
 	}
 
 	if balance.Current < sum {
-		return customerror.New(errInsufficientBalance)
+		return customerror.New(InsufficientBalance)
 	}
 
 	makeErr := wCase.withdrawalRepository.Make(ctx, orderNumber, userID, sum)

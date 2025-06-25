@@ -3,14 +3,13 @@ package orderhandler
 import (
 	"context"
 	"errors"
-	orderusecase "gophermarket/internal/app/application/usecase/order"
 	"io"
 	"net/http"
 	"strings"
 
 	"gophermarket/internal/app/adapter/primary/http-adapter/middleware"
+	orderusecase "gophermarket/internal/app/application/usecase/order"
 	"gophermarket/internal/constants"
-	customerror "gophermarket/internal/error"
 	util "gophermarket/internal/util/error_response"
 )
 
@@ -20,7 +19,7 @@ func (oh *Handler) UploadOrder(res http.ResponseWriter, req *http.Request) {
 
 	userID, ok := req.Context().Value(middleware.UserIDKey()).(int)
 	if !ok {
-		util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: string(constants.ErrFailedGettingUserID)})
+		util.WriteErrorResponse(res, http.StatusUnauthorized, util.WrapperError[string]{CustomError: constants.ErrFailedGettingUserID.Error()})
 		return
 	}
 
@@ -38,7 +37,7 @@ func (oh *Handler) UploadOrder(res http.ResponseWriter, req *http.Request) {
 
 	uploadErr := oh.Service.Order.Upload(ctx, userID, orderNum)
 	if uploadErr != nil {
-		if errors.Is(uploadErr, customerror.New(string(constants.ErrInvalidOrderNumber))) {
+		if errors.Is(uploadErr, constants.ErrInvalidOrderNumber) {
 			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: uploadErr.Error()})
 			return
 		}

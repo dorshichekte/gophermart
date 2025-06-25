@@ -1,5 +1,5 @@
 package withdrawalusecase
 
 const (
-	errInsufficientBalance = "Insufficient funds on balance"
+	InsufficientBalance = "Insufficient funds on balance"
 )
