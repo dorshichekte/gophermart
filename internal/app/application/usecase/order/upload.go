@@ -17,7 +17,7 @@ func (oc *OrderUseCase) Upload(ctx context.Context, userID int, orderNumber stri
 	}
 
 	order, err := oc.orderRepository.GetByNumber(ctx, orderNumber)
-	if !errors.Is(err, sql.ErrNoRows) {
+	if err != nil && !errors.Is(err, sql.ErrNoRows) {
 		return err
 	}
 
