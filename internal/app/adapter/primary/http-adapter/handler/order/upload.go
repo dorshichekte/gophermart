@@ -2,12 +2,14 @@ package orderhandler
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 	"strings"
 
 	"gophermarket/internal/app/adapter/primary/http-adapter/middleware"
 	"gophermarket/internal/constants"
+	customerror "gophermarket/internal/error"
 	util "gophermarket/internal/util/error_response"
 )
 
@@ -35,6 +37,11 @@ func (oh *Handler) UploadOrder(res http.ResponseWriter, req *http.Request) {
 
 	uploadErr := oh.Service.Order.Upload(ctx, userID, orderNum)
 	if uploadErr != nil {
+		if errors.Is(uploadErr, customerror.New(string(constants.ErrInvalidOrderNumber))) {
+			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: uploadErr.Error()})
+			return
+		}
+
 		util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: uploadErr.Error()})
 		return
 	}

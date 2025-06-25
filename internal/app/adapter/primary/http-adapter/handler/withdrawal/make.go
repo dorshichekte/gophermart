@@ -2,6 +2,8 @@ package withdrawalhandler
 
 import (
 	"context"
+	"errors"
+	customerror "gophermarket/internal/error"
 	"net/http"
 
 	dto "gophermarket/internal/app/adapter/primary/http-adapter/dto/withdrawal"
@@ -45,6 +47,11 @@ func (wh *Handler) Make(res http.ResponseWriter, req *http.Request) {
 
 	makeErr := wh.Service.Withdrawal.Make(ctx, withdrawalDto.Order, userID, withdrawalDto.Sum)
 	if makeErr != nil {
+		if errors.Is(makeErr, customerror.New(string(constants.ErrInvalidOrderNumber))) {
+			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: makeErr.Error()})
+			return
+		}
+
 		util.WriteErrorResponse(res, http.StatusBadRequest, util.WrapperError[string]{CustomError: makeErr.Error()})
 		return
 	}
