@@ -4,14 +4,14 @@ import (
 	"go.uber.org/zap"
 
 	base_handler "gophermarket/internal/app/adapter/primary/http-adapter/handler/base"
-	"gophermarket/internal/app/application/usecase"
+	userusecase "gophermarket/internal/app/application/usecase/user"
 	v "gophermarket/internal/libs/validator"
 )
 
-func New(bh base_handler.BaseHandler, logger *zap.Logger, service *usecase.UseCases, validator *v.Validator) *Handler {
+func New(bh base_handler.BaseHandler, logger *zap.Logger, service *userusecase.UserUseCase, validator *v.Validator) *Handler {
 	return &Handler{
 		BaseHandler: bh,
-		Service:     service,
+		ServiceUser: service,
 		Logger:      logger,
 		validator:   validator,
 	}

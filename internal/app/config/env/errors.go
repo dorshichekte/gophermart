@@ -1,4 +1,4 @@
-package envconfig
+package config
 
 import (
 	customerror "gophermarket/internal/error"

@@ -7,6 +7,6 @@ import (
 )
 
 type Worker struct {
-	Cfg    envconfig.Config
+	Cfg    envconfig.Env
 	Logger *zap.Logger
 }

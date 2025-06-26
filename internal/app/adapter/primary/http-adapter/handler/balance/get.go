@@ -21,7 +21,7 @@ func (bh *Handler) GetBalance(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	balance, serviceErr := bh.Service.Balance.Get(ctx, userID)
+	balance, serviceErr := bh.ServiceBalance.Get(ctx, userID)
 	if serviceErr != nil {
 		util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: serviceErr.Error()})
 		return

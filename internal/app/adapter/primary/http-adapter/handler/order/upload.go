@@ -35,7 +35,7 @@ func (oh *Handler) UploadOrder(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	uploadErr := oh.Service.Order.Upload(ctx, userID, orderNum)
+	uploadErr := oh.ServiceOrder.Upload(ctx, userID, orderNum)
 	if uploadErr != nil {
 		if errors.Is(uploadErr, constants.ErrInvalidOrderNumber) {
 			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: uploadErr.Error()})

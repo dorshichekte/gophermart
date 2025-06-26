@@ -13,7 +13,7 @@ import (
 	"gophermarket/internal/libs/hasher"
 )
 
-func New(logger *zap.Logger, cfg envconfig.Config, hasher hasher.Hasher, auth auth.Auth, repos Repositories) *UseCases {
+func New(logger *zap.Logger, cfg envconfig.Env, hasher hasher.Hasher, auth auth.Auth, repos Repositories) *UseCases {
 	return &UseCases{
 		User:       user_usecase.New(logger, hasher, auth, repos.User),
 		Balance:    balance_usecase.New(logger, repos.Balance),

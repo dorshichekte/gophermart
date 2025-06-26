@@ -9,6 +9,6 @@ import (
 
 type AccrualUseCase struct {
 	logger          *zap.Logger
-	config          envconfig.Config
+	config          envconfig.Env
 	orderRepository order_repository.OrderRepository
 }

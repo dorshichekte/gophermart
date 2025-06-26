@@ -10,6 +10,6 @@ import (
 
 type Postgres struct {
 	l      *zap.Logger
-	config envconfig.Config
+	config config.Env
 	DB     *sql.DB
 }

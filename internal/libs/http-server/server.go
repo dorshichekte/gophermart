@@ -7,9 +7,11 @@ import (
 
 	"go.uber.org/zap"
 	"golang.org/x/sync/errgroup"
+
+	adapter "gophermarket/internal/app/config/adapter"
 )
 
-func New(logger *zap.Logger, config Config, handler http.Handler) *Server {
+func New(logger *zap.Logger, config adapter.HTTPServer, handler http.Handler) *Server {
 	server := &http.Server{
 		Handler:           handler,
 		ReadTimeout:       config.ReadTimeout,

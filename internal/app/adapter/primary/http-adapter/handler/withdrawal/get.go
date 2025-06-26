@@ -21,7 +21,7 @@ func (wh *Handler) GetWithdrawals(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	wds, withdrawalErr := wh.Service.Withdrawal.Get(ctx, userID)
+	wds, withdrawalErr := wh.ServiceWithdrawal.Get(ctx, userID)
 	if withdrawalErr != nil {
 		util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: withdrawalErr.Error()})
 		return

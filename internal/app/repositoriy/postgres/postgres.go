@@ -16,7 +16,7 @@ import (
 	customerror "gophermarket/internal/error"
 )
 
-func New(l *zap.Logger, cfg envconfig.Config) *sql.DB {
+func New(l *zap.Logger, cfg config.Env) *sql.DB {
 	db, err := sql.Open("pgx", cfg.DatabaseDSN)
 	if err != nil {
 		l.Fatal(err.Error())
@@ -32,7 +32,7 @@ func New(l *zap.Logger, cfg envconfig.Config) *sql.DB {
 	return db
 }
 
-func applyMigrations(cfg envconfig.Config) error {
+func applyMigrations(cfg config.Env) error {
 	wd, err := os.Getwd()
 	if err != nil {
 		return customerror.NewWithData(constants.PathUnknownFolderPath, err)

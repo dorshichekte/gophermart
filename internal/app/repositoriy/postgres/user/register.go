@@ -2,6 +2,7 @@ package userrepositorypostgres
 
 import (
 	"context"
+
 	entity "gophermarket/internal/app/domain/entity/user"
 	model "gophermarket/internal/app/repositoriy/model/user"
 )

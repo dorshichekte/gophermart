@@ -21,7 +21,7 @@ func (oh *Handler) GetOrders(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	orders, getOrdersErr := oh.Service.Order.GetAll(ctx, userID)
+	orders, getOrdersErr := oh.ServiceOrder.GetAll(ctx, userID)
 	if getOrdersErr != nil {
 		util.WriteErrorResponse(res, http.StatusInternalServerError, util.WrapperError[string]{CustomError: getOrdersErr.Error()})
 		return

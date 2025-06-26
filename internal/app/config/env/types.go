@@ -1,6 +1,6 @@
-package envconfig
+package config
 
-type Config struct {
+type Env struct {
 	ServerAddress   string
 	DatabaseDSN     string
 	AccrualAddress  string

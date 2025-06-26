@@ -43,7 +43,7 @@ func (uh *Handler) Login(auth auth.Auth) func(res http.ResponseWriter, req *http
 			return
 		}
 
-		userID, loginErr := uh.Service.User.Login(ctx, loginRequestDto.Login, loginRequestDto.Password)
+		userID, loginErr := uh.ServiceUser.Login(ctx, loginRequestDto.Login, loginRequestDto.Password)
 		if loginErr != nil {
 			if errors.Is(loginErr, user_usecase.ErrUserNotFound) {
 				uh.Logger.Error(loginErr.Error())

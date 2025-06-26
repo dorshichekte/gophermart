@@ -1,16 +1,11 @@
 package config
 
 import (
+	adapter "gophermarket/internal/app/config/adapter"
 	"gophermarket/internal/app/config/env"
-
-	http_adapter "gophermarket/internal/app/adapter/primary/http-adapter"
 )
 
-type Adapters struct {
-	HTTPAdapter http_adapter.Config
-}
-
 type Config struct {
-	Env      envconfig.Config
-	Adapters Adapters
+	Env         config.Env
+	HTTPAdapter adapter.HTTPAdapter
 }

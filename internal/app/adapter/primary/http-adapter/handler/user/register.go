@@ -43,7 +43,7 @@ func (uh *Handler) Register(auth auth.Auth) func(res http.ResponseWriter, req *h
 			return
 		}
 
-		userID, registerErr := uh.Service.User.Register(ctx, registerRequestDto.Login, registerRequestDto.Password)
+		userID, registerErr := uh.ServiceUser.Register(ctx, registerRequestDto.Login, registerRequestDto.Password)
 		if registerErr != nil {
 			uh.Logger.Error(registerErr.Error())
 			if errors.Is(registerErr, user_usecase.ErrLoginAlreadyTaken) {

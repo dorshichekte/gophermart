@@ -5,10 +5,11 @@ import (
 
 	"gophermarket/internal/app/adapter/primary/http-adapter/handler"
 	"gophermarket/internal/app/adapter/primary/http-adapter/middleware"
+	adapter "gophermarket/internal/app/config/adapter"
 	"gophermarket/internal/libs/auth"
 )
 
-func (r *Router) AppendRoutes(config Config, handlers *handler.Handlers, auth auth.Auth) {
+func (r *Router) AppendRoutes(config adapter.Router, handlers *handler.Handlers, auth auth.Auth) {
 	r.config = config
 
 	routes := []Route{

@@ -2,7 +2,6 @@ package app
 
 import (
 	"context"
-	"gophermarket/internal/libs/worker"
 
 	"go.uber.org/zap"
 
@@ -17,6 +16,7 @@ import (
 	"gophermarket/internal/libs/auth"
 	"gophermarket/internal/libs/hasher"
 	v "gophermarket/internal/libs/validator"
+	"gophermarket/internal/libs/worker"
 )
 
 func New(ctx context.Context, l *zap.Logger, cfg config.Config) App {
@@ -35,7 +35,7 @@ func New(ctx context.Context, l *zap.Logger, cfg config.Config) App {
 
 	useCases := usecase.New(l, cfg.Env, h, a, repos)
 
-	httpAdapter := httpadapter.New(l, a, cfg.Adapters.HTTPAdapter, useCases, validator)
+	httpAdapter := httpadapter.New(l, a, cfg.HTTPAdapter, useCases, validator)
 
 	w := worker.New(cfg.Env, l)
 	go w.Start(ctx, useCases.Accrual.PendingOrders)

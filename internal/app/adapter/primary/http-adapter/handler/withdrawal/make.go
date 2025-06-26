@@ -45,7 +45,7 @@ func (wh *Handler) Make(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	makeErr := wh.Service.Withdrawal.Make(ctx, withdrawalDto.Order, userID, withdrawalDto.Sum)
+	makeErr := wh.ServiceWithdrawal.Make(ctx, withdrawalDto.Order, userID, withdrawalDto.Sum)
 	if makeErr != nil {
 		if errors.Is(makeErr, customerror.New(constants.ErrInvalidOrderNumber.Error())) {
 			util.WriteErrorResponse(res, http.StatusUnprocessableEntity, util.WrapperError[string]{CustomError: makeErr.Error()})

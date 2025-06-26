@@ -6,6 +6,6 @@ import (
 	"go.uber.org/zap"
 )
 
-func New(cfg envconfig.Config, logger *zap.Logger) *Worker {
+func New(cfg envconfig.Env, logger *zap.Logger) *Worker {
 	return &Worker{Cfg: cfg, Logger: logger}
 }
