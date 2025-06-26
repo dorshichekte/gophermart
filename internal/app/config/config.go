@@ -1,8 +1,6 @@
 package config
 
 import (
-	"fmt"
-
 	"github.com/joho/godotenv"
 
 	adapter "gophermarket/internal/app/config/adapter"
@@ -10,7 +8,7 @@ import (
 )
 
 func New() (Config, error) {
-	err := godotenv.Load()
+	_ = godotenv.Load()
 
 	envCfg, err := config.NewEnvConfig()
 	if err != nil {
@@ -18,8 +16,6 @@ func New() (Config, error) {
 	}
 
 	httpAdapterCfg := adapter.NewAdapterConfig(envCfg.ServerAddress)
-
-	fmt.Println(envCfg, httpAdapterCfg)
 
 	return Config{
 		Env:         envCfg,
